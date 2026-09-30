@@ -64,3 +64,5 @@ git config filter.nbstripout.extrakeys "metadata.kernelspec metadata.language_in
 ```
 
 This registers a git filter that strips outputs, execution counts, and the kernel/version metadata from notebooks whenever git reads or diffs them — your local `.ipynb` files on disk are untouched, so notebooks still run and show outputs normally in your editor.
+
+The filter lives in your local `.git/config`, so it is not shared through the repo. To catch anyone who skipped this step, CI fails a PR if a committed notebook still contains outputs or kernel metadata. If that happens, run the two commands above, then `git add --renormalize notebooks` and commit.
