@@ -27,7 +27,7 @@ jobs:
       - name: Check notebooks are stripped
         run: |
           git ls-files -z '*.ipynb' | xargs -0 uv run nbstripout --verify \
-            --extra-keys "metadata.kernelspec metadata.language_info.version" \
+            --extra-keys "metadata.kernelspec metadata.language_info.version metadata.vscode" \
             || { echo "Notebooks contain outputs/kernel metadata. Do the 'clean notebook diffs' setup from the README, then run: git add --renormalize notebooks"; exit 1; }
 
       - name: Run tests
