@@ -1,26 +1,30 @@
-[tool.poetry]
+[project]
 name = "learn-cognite-functions"
 version = "0.1.0"
 description = ""
-authors = ["Choukha Ram <choukha.ram@cognite.com>"]
+authors = [{ name = "Choukha Ram", email = "choukha.ram@cognite.com" }]
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "python-dotenv>=0.20.0",
+    "matplotlib>=3.5.2",
+    "cognite-sdk>=4.5.4,<6",
+    "pandas>=1.5.0,<2",
+    "numpy<2",  # pandas 1.x is not compatible with numpy 2
+    "msal",
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-python-dotenv = "^0.20.0"
-matplotlib = "^3.5.2"
-cognite-sdk = "^4.5.4"
-pandas = "^1.5.0"
+[tool.uv]
+package = false
 
-[tool.poetry.dev-dependencies]
-isort = "^5.10.1"
-black = "^22.3.0"
-flake8 = "^4.0.1"
-pre-commit = "2.19.0"
-pylint = "^2.13.8"
-ipykernel = "^6.13.0"
-pytest = "^7.1.2"
-safety = "^1.10.3"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "isort>=5.10.1",
+    "black>=22.3.0",
+    "flake8>=4.0.1",
+    "pre-commit>=2.19.0",
+    "pylint>=2.13.8",
+    "ipykernel>=6.13.0",
+    "pytest>=7.1.2",
+    "safety>=1.10.3",
+    "nbstripout>=0.9.1",
+]
